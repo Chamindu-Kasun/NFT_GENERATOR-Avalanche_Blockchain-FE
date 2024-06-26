@@ -12,6 +12,19 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
+  color: #fff;
+  background-color: #060417;
   overflow-x: hidden;
 }
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh
+}
+
+@import "./Topbar/Topbar.css";
+@import "./Footer/Footer.css";
+@import "./Home/Home.css";

@@ -1,11 +1,12 @@
 import Footer from "../../components/Footer";
+import HomeSection from "../../components/HomeSection";
 import TopBar from "../../components/TopBar";
 
 const Home = () => {
   return (
-    <div>
+    <div className="main">
       <TopBar />
-      <h1>Home</h1>
+      <HomeSection/>
       <Footer />
     </div>
   );
