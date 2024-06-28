@@ -7,6 +7,7 @@ const TopBar: React.FC = () => {
   return (
     <div className="top-bar-section">
        <Image src={Logo} width={100} height={50} alt="Logo" />
+       <button className="connect-wallet-button">Connect wallet</button>
     </div>
   );
 };

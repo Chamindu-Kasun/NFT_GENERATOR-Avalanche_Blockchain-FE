@@ -1,3 +1,17 @@
 .top-bar-section{
-    padding: 1rem;
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.connect-wallet-button{
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: rgb(230, 174, 54);
+    color: #ffff;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid orange;
+    width: 200px;
 }
