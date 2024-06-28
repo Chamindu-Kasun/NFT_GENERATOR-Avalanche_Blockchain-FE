@@ -5,11 +5,15 @@ export const metadata = {
   description: "Create your own NFTs with Avalanche Fuji Test Network",
 };
 
+import { WalletProvider } from "../../context/walletContext";
+
 const Rootlayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body>
+        <WalletProvider>
         <main>{children}</main>
+        </WalletProvider>
       </body>
     </html>
   );
