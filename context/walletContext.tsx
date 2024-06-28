@@ -1,6 +1,8 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
+import { ethers } from "ethers";
 const AVAX_FUJI_CHAIN_ID = "0xa869";
+const RPC_URL = "https://api.avax-test.network/ext/bc/C/rpc";
 
 type WalletContextProps = {
   walletAddress: string;
@@ -26,6 +28,7 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [walletAddress, setWalletAddress] = useState<string>("");
+  const [avaxBalance, setAvaxBalance] = useState<string>("0");
 
   // connect wallet
   const connectWallet = async () => {
@@ -80,6 +83,14 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({
         }
         // Set wallet address
         setWalletAddress(accounts[0]);
+
+        // Fetch balance
+        const provider = new ethers.JsonRpcProvider(RPC_URL);
+        const balance = await provider.getBalance(accounts[0]);
+        const balanceInAvax = ethers.formatEther(balance); 
+        setAvaxBalance(balanceInAvax);
+
+        console.log(avaxBalance)
       } catch (error) {
         console.error(error);
       }
