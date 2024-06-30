@@ -9,6 +9,7 @@ type WalletContextProps = {
   setWalletAddress: (address: string) => void;
   connectWallet: () => Promise<void>;
   disconnectWallet: () => Promise<void>;
+  avaxBalance: string;
 };
 
 interface CustomWindow extends Window {
@@ -21,6 +22,7 @@ const WalletContext = createContext<WalletContextProps>({
   setWalletAddress: () => {},
   connectWallet: async () => {},
   disconnectWallet: async () => {},
+  avaxBalance:"0"
 });
 
 // provider
@@ -118,6 +120,7 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({
     setWalletAddress,
     connectWallet,
     disconnectWallet,
+    avaxBalance
   };
 
   return (

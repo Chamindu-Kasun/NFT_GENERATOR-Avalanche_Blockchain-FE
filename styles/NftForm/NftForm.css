@@ -1,0 +1,28 @@
+.nft-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.upload-to-ipfs-button{
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: rgb(230, 174, 54);
+    color: #ffff;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid orange;
+    width: 150px;
+}
+
+.generate-nft-button{
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: rgb(41, 104, 22);
+    color: #ffff;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid green;
+    width: 150px;
+}
