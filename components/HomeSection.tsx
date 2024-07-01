@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Upload from "../public/images/Upload.png";
 import NFT from "../public/images/NFT.png";
@@ -12,9 +12,16 @@ const HomeSection: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [showCreateNFTForm, setShowCreateNFTForm] = useState<boolean>(false);
+  const [showWalletNotConnectedMessage, setShowWalletNotConnectedMessage] =
+    useState<string>("");
 
   const handleUploadClick = () => {
-    fileInputRef.current?.click();
+    if (!walletAddress) {
+      setShowWalletNotConnectedMessage("You need to connect wallet first");
+    } else {
+      setShowWalletNotConnectedMessage("");
+      fileInputRef.current?.click();
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,12 +35,17 @@ const HomeSection: React.FC = () => {
   const handleClose = () => {
     setSelectedFile(null);
     setPreview(null);
+    setShowCreateNFTForm(false);
   };
-
-
 
   const faucetUrl = "https://core.app/tools/testnet-faucet/?subnet=c&token=c";
 
+  useEffect(() => {
+    if (walletAddress)
+      setShowWalletNotConnectedMessage(
+        "Upload images from your computer that you need to convert to an NFT."
+      );
+  }, [walletAddress]);
 
   return (
     <>
@@ -51,15 +63,17 @@ const HomeSection: React.FC = () => {
           <div>
             {preview ? (
               <p>Convert this image to an NFT.</p>
-            ) : (
+            ) : !showWalletNotConnectedMessage ? (
               <p>
                 Upload images from your computer that you need to convert to an
                 NFT.
               </p>
+            ) : (
+              <p>{showWalletNotConnectedMessage}</p>
             )}
           </div>
           {preview ? (
-            <div className="button-section">
+            <div className="button-section-home">
               <button
                 className="convert-button"
                 onClick={() => setShowCreateNFTForm(true)}
@@ -88,7 +102,7 @@ const HomeSection: React.FC = () => {
               />
             </div>
           )}
-          {walletAddress !== "" && (
+          {(walletAddress !== "" && !selectedFile) &&    (
             <a
               href={faucetUrl}
               target="_blank"
@@ -101,7 +115,11 @@ const HomeSection: React.FC = () => {
         </div>
       ) : (
         <div className="home-section-nft-form">
-          <NftForm preview={preview} selectedFile={selectedFile} />
+          <NftForm
+            preview={preview}
+            selectedFile={selectedFile}
+            handleClose={handleClose}
+          />
         </div>
       )}
     </>

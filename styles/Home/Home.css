@@ -8,26 +8,39 @@
 .close-button{
     padding: 10px 20px;
     border-radius: 50px;
-    background-color: transparent;
+    background-color: rgb(199, 35, 35);
     color: #ffff;
     cursor: pointer;
     font-weight: bold;
     border: 1px solid red;
-    width: 100px;
+    width: 150px;
+}
+
+.faucet-button{
+    padding: 10px 20px;
+    border-radius: 50px;
+    background-color: rgb(24, 116, 24);
+    color: #ffff;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid rgb(21, 94, 3);
+    width: 150px; 
+    text-decoration: none;
+    text-align: center;
 }
 
 .convert-button{
     padding: 10px 20px;
     border-radius: 50px;
-    background-color: transparent;
+    background-color: rgb(230, 174, 54);
     color: #ffff;
     cursor: pointer;
     font-weight: bold;
     border: 1px solid orange;
-    width: 100px;
+    width: 150px;
 }
 
-.button-section{
+.button-section-home{
     display: flex;
     align-items: center;
     justify-content: center;

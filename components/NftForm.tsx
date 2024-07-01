@@ -5,10 +5,11 @@ import uploadFileToIPFS from "../services/UploadToIPFS";
 type NftFormProps = {
   preview: string | null;
   selectedFile: File | null;
+  handleClose : () => void;
 };
 
 const NftForm: React.FC<NftFormProps> = (props) => {
-  const { preview, selectedFile } = props;
+  const { preview, selectedFile, handleClose } = props;
   const [isNotUploadedToIPFS, setNotIsUplodedToIPFS] = useState<boolean>(true);
   const [formInput, updateFormInput] = useState({ name: "", description: "" });
   const [ipfsHash, setIpfsHash] = useState<string | null>(null);
@@ -44,12 +45,13 @@ const NftForm: React.FC<NftFormProps> = (props) => {
       </div>
       <input
         placeholder={isNotUploadedToIPFS ? "IPSF Url" : ipfsHash?ipfsHash:"IPSF Url"}
-        className="my-2"
+        className="inputField"
         disabled={true}
       />
+      {isNotUploadedToIPFS && <p className="upload-image-text">Upload image to IPFS first</p>}
       <input
         placeholder="Asset Name"
-        className="my-2"
+        className="inputField"
         onChange={(e) =>
           updateFormInput({ ...formInput, name: e.target.value })
         }
@@ -57,14 +59,15 @@ const NftForm: React.FC<NftFormProps> = (props) => {
       />
       <textarea
         placeholder="Asset Description"
-        className="my-2"
+        className="inputField"
         onChange={(e) =>
           updateFormInput({ ...formInput, description: e.target.value })
         }
         disabled={isNotUploadedToIPFS}
       />
-      <div>
+      <div className="button-section">
         <button className="generate-nft-button" disabled={isNotUploadedToIPFS}>Generate NFT</button>
+        <button className="cancel-button" onClick={handleClose}>Cancel</button>
       </div>
     </div>
   );
